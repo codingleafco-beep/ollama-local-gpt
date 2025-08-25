@@ -21,6 +21,7 @@ import {
   Bug,
   FileText
 } from 'lucide-react'
+import { ClientDateFormatter } from '@/components/client-date-formatter'
 
 interface Message {
   id: string
@@ -375,7 +376,7 @@ export default function ChatPage() {
                 <div className="text-left truncate">
                   <div className="font-medium truncate">{chat.title}</div>
                   <div className="text-xs text-muted-foreground">
-                    {chat.createdAt.toLocaleDateString()}
+                    <ClientDateFormatter date={chat.createdAt} format="date" />
                   </div>
                 </div>
               </Button>
@@ -513,7 +514,7 @@ export default function ChatPage() {
                   <div>
                     <h3 className="text-lg font-medium">{releaseNotes.name}</h3>
                     <p className="text-sm text-muted-foreground">
-                      Version {releaseNotes.tag_name} • {new Date(releaseNotes.published_at).toLocaleDateString()}
+                      Version {releaseNotes.tag_name} • <ClientDateFormatter date={new Date(releaseNotes.published_at)} format="date" />
                     </p>
                   </div>
                   <Separator />
@@ -564,7 +565,7 @@ export default function ChatPage() {
                   >
                     <div className="whitespace-pre-wrap">{msg.content}</div>
                     <div className="text-xs opacity-70 mt-2">
-                      {msg.timestamp.toLocaleTimeString()}
+                      <ClientDateFormatter date={msg.timestamp} format="time" />
                     </div>
                   </div>
                 </div>
